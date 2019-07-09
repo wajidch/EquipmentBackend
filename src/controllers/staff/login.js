@@ -8,22 +8,22 @@ const verifyToken = require('../../utilities/auth').verifyToken;
 const comparePasswordUtility = require('../../utilities/password').comparePassword;
 const model = require('../../models');
 
-const userModel = 'users';
+const staffModel = 'staff';
 /**
  * User login API
  * @param req is containing payload sent from user
  * @param callback will return response to handler
  */
-module.exports = (req, callback) => model[userModel].findOne({
+module.exports = (req, callback) => model[staffModel].findOne({
     where: {
         email: req.email,
         password:req.password,
         deleted:0,
     },
     attributes:{  exclude: ['deleted']}
-}).then(employees => {
-    if (employees) {
-        return callback(null, responses.dataResponse(statusCodes.OK, responseMsg.LOGIN_SUCCESSFULL, employees));
+}).then(staffData => {
+    if (staffData) {
+        return callback(null, responses.dataResponse(statusCodes.OK, responseMsg.LOGIN_SUCCESSFULL, staffData));
     } else {
         return callback(null, responses.notFoundResponse());
     }

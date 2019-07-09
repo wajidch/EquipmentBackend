@@ -8,7 +8,7 @@
   </a>
 </p>
 
-# Loveedo
+# Equipment 
 
 ## Installation
 

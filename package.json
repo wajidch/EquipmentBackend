@@ -59,7 +59,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "nodemon": "^1.18.4"
+    "nodemon": "^1.19.1"
   },
   "scripts": {
     "start": "node server.js"

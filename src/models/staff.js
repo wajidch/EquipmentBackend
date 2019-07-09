@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    return sequelize.define('users', {
+    return sequelize.define('staff', {
 
         
             id: {
@@ -17,8 +17,10 @@ module.exports = function (sequelize, DataTypes) {
             password:{
                 type:DataTypes.STRING(45)
             },
-            phone:{
-                type:DataTypes.STRING(45)
+            role:{
+                type: DataTypes.STRING(45),
+                defaultValue: 'Staff'      
+            
             },
             profile_picture:{
                 type:DataTypes.STRING(200)
@@ -32,6 +34,6 @@ module.exports = function (sequelize, DataTypes) {
         
     },
      {
-        tableName: 'users'
+        tableName: 'staff'
     });
 }

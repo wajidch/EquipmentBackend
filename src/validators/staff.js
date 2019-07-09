@@ -2,13 +2,12 @@
 
 const Joi = require('joi');
 
-const add = Joi.object({
+const postAnnouncement = Joi.object({
 
 
-      name: Joi.string().empty('').optional(),
-      email: Joi.string().empty('').optional(),
-     password: Joi.string().empty('').optional(),
-    phone:Joi.string().empty('').optional()
+    subject: Joi.string().optional(),
+    message: Joi.string().optional(),
+     date: Joi.date().optional(),
    
 
 });
@@ -31,7 +30,7 @@ const userLogin = Joi.object({
 })
 
 module.exports = {
-    add,
+    postAnnouncement,
   updateProfile,
     userLogin,
 };
