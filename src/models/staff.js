@@ -8,8 +8,19 @@ module.exports = function (sequelize, DataTypes) {
                 primaryKey: true,
                 autoIncrement: true
             },
-            name:{
+            staff_id:{
+                type: DataTypes.INTEGER(11),
+
+            },
+            first_name:{
                 type:DataTypes.STRING(45)
+            },
+            last_name:{
+                type:DataTypes.STRING(45)
+            },
+            mobile_no:{
+                type:DataTypes.STRING(45)
+
             },
             email:{
                 type:DataTypes.STRING(45)
@@ -24,6 +35,14 @@ module.exports = function (sequelize, DataTypes) {
             },
             profile_picture:{
                 type:DataTypes.STRING(200)
+            },
+            job_title:{
+                type: DataTypes.STRING(45),
+
+            },
+            department:{
+                type: DataTypes.STRING(45),
+
             },
            
             deleted: {

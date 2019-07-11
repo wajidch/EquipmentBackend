@@ -11,6 +11,10 @@ module.exports = function (sequelize, DataTypes) {
             serialNo:{
                 type:DataTypes.STRING(45)
             },
+            equipmentType:{
+                type:DataTypes.STRING(45)
+
+            },
             equipmentName:{
                 type:DataTypes.STRING(45)
             },

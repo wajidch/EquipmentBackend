@@ -12,6 +12,21 @@ const postAnnouncement = Joi.object({
 
 });
 
+
+const createStaffAccount={
+    staff_id:Joi.number().integer().optional(),
+    first_name:Joi.string().optional(),
+    last_name:Joi.string().optional(),
+    mobile_no:Joi.string().optional(),
+    email:Joi.string().optional(),
+    password:Joi.string().optional(),
+    role:Joi.string().optional(),
+    profile_picture:Joi.string().optional(),
+    job_title:Joi.string().optional(),
+    department:Joi.string().optional(),
+  
+}
+
 const updateProfile={
     user_id:Joi.number().required(),
     name: Joi.string().empty('').optional(),
@@ -33,4 +48,5 @@ module.exports = {
     postAnnouncement,
   updateProfile,
     userLogin,
+    createStaffAccount
 };
