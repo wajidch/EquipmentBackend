@@ -9,7 +9,7 @@ const emailUtils = require('../../utilities/emails').employeeAddedEmail;
 const hashPasswordUtility = require('../../utilities/password').hashPassword;
 const model = require('../../models');
 const Op = model.Sequelize.Op;
-const userModel = 'users';
+const staffModel = 'staff';
 
 
 
@@ -24,7 +24,7 @@ module.exports = (req, callback) => {
 
     console.log(req)
 
-             model[userModel].update(req,{
+             model[staffModel].update(req,{
                  where:{
                      id:req.user_id
                  }

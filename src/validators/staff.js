@@ -29,10 +29,14 @@ const createStaffAccount={
 
 const updateProfile={
     user_id:Joi.number().required(),
-    name: Joi.string().empty('').optional(),
+    first_name:Joi.string().optional(),
+    email:Joi.string().optional(),
+
     password: Joi.string().empty('').optional(),
-    phone:Joi.string().empty('').optional(),
-    profile_picture:Joi.string().empty('').optional()
+    mobile_no:Joi.string().empty('').optional(),
+    profile_picture:Joi.string().empty('').optional(),
+department:Joi.string().empty('').optional(),
+staff_id:Joi.string().empty('').optional()
     
 }
 

@@ -10,7 +10,6 @@ const login = require('../controllers/staff/login');
 const announcement = require('../controllers/announcements/post-announcements');
 const staffList = require('../controllers/staff/list');
 const createnewaccount= require('../controllers/staff/create-account')
-const mostviewCV=require('../controllers/staff/most-view-cv');
 const updateProfile=require('../controllers/staff/update-profile');
 
 

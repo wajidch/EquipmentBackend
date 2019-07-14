@@ -25,6 +25,7 @@ module.exports = function (sequelize, DataTypes) {
                 type: DataTypes.STRING(45),
             
             },
+          
             lifespan:{
                 type:DataTypes.STRING(45)
             },
