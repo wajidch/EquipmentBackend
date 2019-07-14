@@ -24,6 +24,7 @@ const updateEquipment = Joi.object({
     equipment_id:Joi.number().integer().required(),
     serialNo:Joi.string().empty('').optional(),
     equipmentName:Joi.string().empty('').optional(),
+    equipmentType :Joi.string().empty('').optional(),
     brand:Joi.string().empty('').optional(),
     model:Joi.string().empty('').optional(),
     lifespan:Joi.string().empty('').optional(),
@@ -42,8 +43,14 @@ const equipmentDetailParam={
     equipment_id:Joi.number().integer().required(),
 
 }
+const deleteEquipment={
+    equipment_id:Joi.number().integer().required(),
+
+
+}
 module.exports = {
     addEquipment,
     updateEquipment,
-    equipmentDetailParam
+    equipmentDetailParam,
+    deleteEquipment
 };

@@ -9,7 +9,8 @@ const validator = require('../validators/equipment');
 const addequipment = require('../controllers/Equipments/add-equipment');
 const equipmentList= require('../controllers/Equipments/equipment-list');
 const updateEquipment=require('../controllers/Equipments/update-equipment');
-const equipmentListsetail=require('../controllers/Equipments/equipment-list-detail')
+const equipmentListsetail=require('../controllers/Equipments/equipment-list-detail');
+const deleteEquipment=require('../controllers/Equipments/delete-equipment');
 
 module.exports = [
     {
@@ -117,6 +118,34 @@ module.exports = [
             },
             validate: {
                 payload: validator.updateEquipment,
+                failAction: (request, reply, source, err) => {
+                    reply(responses.makeMessageResponse(false, statusCodes.BAD_REQUEST, err.message.replace(/[^a-zA-Z ]/g, '')));
+                }
+            },
+            plugins: plugins.swaggerPlugin
+        }
+    },
+
+    {
+        method: 'PUT',
+        path: config.apiPrefix + '/Equipment/deleteEquipment',
+        config: {
+            description: 'deleteEquipment',
+            notes: 'deleteEquipment.',
+            tags: ['api', 'Equipment'],
+            auth: false,
+            handler: (request, reply) => {
+                deleteEquipment(request.payload, (err, results) => {
+                    if (err) {
+                        console.log(err);
+                        reply(responses.makeMessageResponse(false, statusCodes.EXPECTATION_FAILED, err.message.replace(/[^a-zA-Z ]/g, ''))).code(statusCodes.INTERNAL_SERVER_ERROR);
+                    } else {
+                        reply(results);
+                    }
+                });
+            },
+            validate: {
+                payload: validator.deleteEquipment,
                 failAction: (request, reply, source, err) => {
                     reply(responses.makeMessageResponse(false, statusCodes.BAD_REQUEST, err.message.replace(/[^a-zA-Z ]/g, '')));
                 }
