@@ -9,6 +9,7 @@ const validator = require('../validators/equipment');
 const addequipment = require('../controllers/Equipments/add-equipment');
 const equipmentList= require('../controllers/Equipments/equipment-list');
 const updateEquipment=require('../controllers/Equipments/update-equipment');
+const equipmentListsetail=require('../controllers/Equipments/equipment-list-detail')
 
 module.exports = [
     {
@@ -64,6 +65,34 @@ module.exports = [
             //         reply(responses.makeMessageResponse(false, statusCodes.BAD_REQUEST, err.message.replace(/[^a-zA-Z ]/g, '')));
             //     }
             // },
+            plugins: plugins.swaggerPlugin
+        }
+    },
+    {
+        method: 'GET',
+        path: config.apiPrefix + '/Equipment/equipmentlistdetail',
+        config: {
+            description: 'equipment list detail',
+            notes: 'equipment list.',
+            tags: ['api', 'Equipment'],
+            auth: false,
+    
+            handler: (request, reply) => {
+                equipmentListsetail(request.query, (err, results) => {
+                    if (err) {
+                        console.log(err);
+                        reply(responses.makeMessageResponse(false, statusCodes.EXPECTATION_FAILED, err.message.replace(/[^a-zA-Z ]/g, ''))).code(statusCodes.INTERNAL_SERVER_ERROR);
+                    } else {
+                        reply(results);
+                    }
+                });
+            },
+            validate: {
+                query: validator.equipmentDetailParam,
+                failAction: (request, reply, source, err) => {
+                    reply(responses.makeMessageResponse(false, statusCodes.BAD_REQUEST, err.message.replace(/[^a-zA-Z ]/g, '')));
+                }
+            },
             plugins: plugins.swaggerPlugin
         }
     },
