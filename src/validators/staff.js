@@ -40,6 +40,12 @@ staff_id:Joi.string().empty('').optional()
     
 }
 
+const changePassword={
+    user_id:Joi.number().required(),
+    password:Joi.string().required()
+
+}
+
 
 const userLogin = Joi.object({
     email: Joi.string().required(),
@@ -52,5 +58,7 @@ module.exports = {
     postAnnouncement,
   updateProfile,
     userLogin,
-    createStaffAccount
+    createStaffAccount,
+    changePassword
+
 };

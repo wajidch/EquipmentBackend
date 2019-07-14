@@ -11,6 +11,7 @@ const announcement = require('../controllers/announcements/post-announcements');
 const staffList = require('../controllers/staff/list');
 const createnewaccount= require('../controllers/staff/create-account')
 const updateProfile=require('../controllers/staff/update-profile');
+const changePassword=require('../controllers/staff/change-password');
 
 
 
@@ -74,7 +75,33 @@ module.exports = [
         }
     },
 
-   
+    {
+        method: 'PUT',
+        path: config.apiPrefix + '/staff/changePassword',
+        config: {
+            description: 'changePassword',
+            notes: 'changePassword.',
+            tags: ['api', 'Staff'],
+            auth: false,
+            handler: (request, reply) => {
+                changePassword(request.payload, (err, results) => {
+                    if (err) {
+                        console.log(err);
+                        reply(responses.makeMessageResponse(false, statusCodes.EXPECTATION_FAILED, err.message.replace(/[^a-zA-Z ]/g, ''))).code(statusCodes.INTERNAL_SERVER_ERROR);
+                    } else {
+                        reply(results);
+                    }
+                });
+            },
+            validate: {
+                payload: validator.changePassword,
+                failAction: (request, reply, source, err) => {
+                    reply(responses.makeMessageResponse(false, statusCodes.BAD_REQUEST, err.message.replace(/[^a-zA-Z ]/g, '')));
+                }
+            },
+            plugins: plugins.swaggerPlugin
+        }
+    },
     {
         method: 'GET',
         path: config.apiPrefix + '/staff/stafflist',
