@@ -53,8 +53,21 @@ const userLogin = Joi.object({
 
 
 })
+const accessrightlist={
+    id:Joi.number().required(),
+}
+const editaccessright={
+    id:Joi.number().required(),
+    staff_id:Joi.number().empty('').optional(),
+    first_name:Joi.string().empty('').optional(),
+    department:Joi.string().empty('').optional(),
+    job_title:Joi.string().empty('').optional(),
+    role:Joi.string().empty('').optional()
 
+}
 module.exports = {
+    editaccessright,
+    accessrightlist,
     postAnnouncement,
   updateProfile,
     userLogin,

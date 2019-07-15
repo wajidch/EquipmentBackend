@@ -12,6 +12,9 @@ const staffList = require('../controllers/staff/list');
 const createnewaccount= require('../controllers/staff/create-account')
 const updateProfile=require('../controllers/staff/update-profile');
 const changePassword=require('../controllers/staff/change-password');
+const editaccessright=require('../controllers/staff/editaccessrigth');
+const accessrightlist=require('../controllers/staff/access-right-list');
+
 
 
 
@@ -103,6 +106,33 @@ module.exports = [
         }
     },
     {
+        method: 'PUT',
+        path: config.apiPrefix + '/staff/editaccessright',
+        config: {
+            description: 'editaccessright',
+            notes: 'editaccessright.',
+            tags: ['api', 'Staff'],
+            auth: false,
+            handler: (request, reply) => {
+                editaccessright(request.payload, (err, results) => {
+                    if (err) {
+                        console.log(err);
+                        reply(responses.makeMessageResponse(false, statusCodes.EXPECTATION_FAILED, err.message.replace(/[^a-zA-Z ]/g, ''))).code(statusCodes.INTERNAL_SERVER_ERROR);
+                    } else {
+                        reply(results);
+                    }
+                });
+            },
+            validate: {
+                payload: validator.editaccessright,
+                failAction: (request, reply, source, err) => {
+                    reply(responses.makeMessageResponse(false, statusCodes.BAD_REQUEST, err.message.replace(/[^a-zA-Z ]/g, '')));
+                }
+            },
+            plugins: plugins.swaggerPlugin
+        }
+    },
+    {
         method: 'GET',
         path: config.apiPrefix + '/staff/stafflist',
         config: {
@@ -127,6 +157,34 @@ module.exports = [
             //         reply(responses.makeMessageResponse(false, statusCodes.BAD_REQUEST, err.message.replace(/[^a-zA-Z ]/g, '')));
             //     }
             // },
+            plugins: plugins.swaggerPlugin
+        }
+    },
+    {
+        method: 'GET',
+        path: config.apiPrefix + '/staff/accessrightlist',
+        config: {
+            description: 'accessrightlist',
+            notes: 'accessrightlist.',
+            tags: ['api', 'Staff'],
+            auth: false,
+    
+            handler: (request, reply) => {
+                accessrightlist(request.query, (err, results) => {
+                    if (err) {
+                        console.log(err);
+                        reply(responses.makeMessageResponse(false, statusCodes.EXPECTATION_FAILED, err.message.replace(/[^a-zA-Z ]/g, ''))).code(statusCodes.INTERNAL_SERVER_ERROR);
+                    } else {
+                        reply(results);
+                    }
+                });
+            },
+            validate: {
+                query: validator.accessrightlist,
+                failAction: (request, reply, source, err) => {
+                    reply(responses.makeMessageResponse(false, statusCodes.BAD_REQUEST, err.message.replace(/[^a-zA-Z ]/g, '')));
+                }
+            },
             plugins: plugins.swaggerPlugin
         }
     },
