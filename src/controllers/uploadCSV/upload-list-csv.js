@@ -23,7 +23,7 @@ const csv = require('csv-parser');
 module.exports = (req, callback) => {
 
     let reqArray=[]
-  let inputFilePath='C:/xampp/htdocs/upload/test.csv'
+  let inputFilePath=`C:/xampp/htdocs/upload/${req.fileName}`
     fs.createReadStream(inputFilePath)
     .pipe(csv())
     .on('data', function(data){
@@ -31,6 +31,14 @@ module.exports = (req, callback) => {
             //perform the operation
             console.log(data);
             let dateobj={
+                model:data.model,
+                serialNo:data.serialNo,
+                leaseStatus:data.leaseStatus,
+                equipmentType:data.equipmentType,
+                leasePeriod:data.leasePeriod,
+                brand:data.brand,
+                insuranceHistory:data.insuranceHistory,
+                lifespan:data.lifespan,
                 equipmentName:data.equipmentName,
                 device1:data.device1
             }
