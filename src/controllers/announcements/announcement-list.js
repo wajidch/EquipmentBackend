@@ -11,6 +11,8 @@ const announcementModel = 'announcements';
 const moment=require('moment');
 
 module.exports = (req, callback) => {
+
+    
     
     model[announcementModel].findAll({
 
@@ -18,7 +20,7 @@ module.exports = (req, callback) => {
              deleted: 0,
              date:{
                  [Op.gte]:moment(new Date()).startOf('day').format(),
-                 [Op.lte]:moment(new Date()).endOf('day').format()
+                 [Op.lte]:moment(new Date()).add(7,'days').endOf('day').format()
              }
         },
 

@@ -20,6 +20,7 @@ const createStaffAccount={
     mobile_no:Joi.string().optional(),
     email:Joi.string().optional(),
     password:Joi.string().optional(),
+    confrimpassword:Joi.string().empty('').optional(),
     role:Joi.string().optional(),
     profile_picture:Joi.string().optional(),
     job_title:Joi.string().optional(),
@@ -42,7 +43,8 @@ staff_id:Joi.string().empty('').optional()
 
 const changePassword={
     user_id:Joi.number().required(),
-    password:Joi.string().required()
+    password:Joi.string().required(),
+    confirmpassword:Joi.string().empty('').optional(),
 
 }
 

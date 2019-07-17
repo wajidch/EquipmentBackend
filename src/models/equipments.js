@@ -33,7 +33,7 @@ module.exports = function (sequelize, DataTypes) {
                 type:DataTypes.STRING(45)
             },
             leasePeriod:{
-                type:DataTypes.STRING(45)
+                type:DataTypes.DATE
             },
             insuranceHistory:{
                 type:DataTypes.STRING(45)

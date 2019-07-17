@@ -22,8 +22,8 @@ module.exports = (req, callback) => {
         order: [ [ 'id', 'DESC' ]]
 
 
-    }).then(announcementList => {
-        return callback(null, responses.dataResponse(statusCodes.OK, responseMsg.FETCH_SUCCESSFULL, announcementList));
+    }).then(equipmentList => {
+        return callback(null, responses.dataResponse(statusCodes.OK, responseMsg.FETCH_SUCCESSFULL, equipmentList));
 
 
     })

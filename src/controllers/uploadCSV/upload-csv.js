@@ -9,7 +9,7 @@ const emailUtils = require('../../utilities/emails').employeeAddedEmail;
 const hashPasswordUtility = require('../../utilities/password').hashPassword;
 const model = require('../../models');
 const Op = model.Sequelize.Op;
-const staffModel = 'staff';
+const equipmentsModel = 'equipments';
 
 
 
@@ -23,31 +23,17 @@ module.exports = (req, callback) => {
 
   
 
-model[staffModel].count({
-    where:{
-        email:req.email,
-        deleted:0
-    }
-}).then(count =>{
 
-    if(count>0){
-        return callback(null, responses.dataResponse(statusCodes.METHOD_FAILURE, responseMsg.ALREADY_EXISTS));
 
-    }
-    else{
 
-    model[staffModel].create(req).then(created => {
+            model[equipmentsModel].bulkCreate(req).then(created => {
               
-        return callback(null, responses.dataResponse(statusCodes.OK, responseMsg.ADDITION_SUCCESSFULL, created));
+                return callback(null, responses.dataResponse(statusCodes.OK, responseMsg.ADDITION_SUCCESSFULL, created));
 
 
-    }).catch(err => {
-        return callback(err)
-    });
-}
-
-})
-
+            }).catch(err => {
+                return callback(err)
+            });
 
      
 }
